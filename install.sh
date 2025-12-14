@@ -4,7 +4,7 @@ set -euo pipefail
 # ----------------------------
 # CONFIG (set these)
 # ----------------------------
-REPO_URL="https://github.com/YOURUSERNAME/arch-dots-base.git"
+REPO_URL="https://github.com/Grelwing/arch-dots-base.git"
 REPO_DIR="${HOME}/arch-dots-base"
 
 PACMAN_LIST_REL="pkg/pacman.txt"
