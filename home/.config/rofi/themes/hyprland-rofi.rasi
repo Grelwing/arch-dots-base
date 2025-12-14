@@ -1,0 +1,119 @@
+/**
+ * Gruvbox Material (Medium) — Transparent Edition
+ */
+
+* {
+    bg0: #282828;
+    bg1: #32302f;
+    grey0: #7c6f64;
+    fg0: #d4be98;
+
+    blue: #7daea3;
+    red:  #ea6962;
+    orange: #e78a4e;
+    green: #a9b665;
+    bgStatusline3: #504945;
+
+    background-color: rgba(40, 40, 40, 0.60);  /* 60% opacity base */
+    text-color: @fg0;
+}
+
+window {
+    height: 600;
+    width: 600;
+
+    border: 1;
+    border-radius: 10;
+    border-color: @bgStatusline3;
+
+    /* slightly less transparent, for a stronger tint */
+    background-color: rgba(40, 40, 40, 0.70);
+}
+
+mainbox {
+    spacing: 0;
+    children: [inputbar, message, listview];
+    background-color: transparent;
+}
+
+inputbar {
+    padding: 14;
+    background-color: rgba(40, 40, 40, 0.70); /* translucent */
+}
+
+message {
+    padding: 10;
+    background-color: rgba(124, 111, 100, 0.70); /* grey0 translucent */
+}
+
+listview {
+    padding: 8;
+    border-radius: 0 0 10 10;
+    border: 2;
+    border-color: rgba(40, 40, 40, 0.70);
+    background-color: rgba(40, 40, 40, 0.70);
+    dynamic: false;
+}
+
+textbox {
+    background-color: inherit;
+}
+
+error-message {
+    border: 20;
+}
+
+entry, prompt, case-indicator {
+    text-color: inherit;
+}
+
+prompt {
+    margin: 0 10 0 0;
+}
+
+element {
+    padding: 5;
+    vertical-align: 0.5;
+    border-radius: 10;
+    background-color: rgba(50, 48, 47, 0.70);  /* bg1 translucent */
+}
+
+element.selected.normal {
+    background-color: rgba(124, 111, 100, 0.70);  /* grey0 translucent */
+}
+
+element.alternate.normal {
+    background-color: inherit;
+}
+
+element.normal.active,
+element.alternate.active {
+    background-color: @orange;
+}
+
+element.selected.active {
+    background-color: @green;
+}
+
+element.normal.urgent,
+element.alternate.urgent {
+    background-color: @red;
+}
+
+element.selected.urgent {
+    background-color: @blue;
+}
+
+element-text,
+element-icon {
+    size: 40;
+    margin: 0 10 0 0;
+    vertical-align: 0.5;
+    background-color: inherit;
+    text-color: @fg0;
+}
+
+element-text.active,
+element-text.urgent {
+    text-color: @bg0;
+}

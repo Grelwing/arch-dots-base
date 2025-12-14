@@ -1,0 +1,83 @@
+/* ========= HYPR GRUVBOX ROFI THEME ========= */
+
+* {
+    /* Gruvbox Dark Hard */
+    bg:             #1d2021f0;
+    bg-alt:         #282828f0;
+    bg-selected:    #3c3836f0;
+    fg:             #ebdbb2ff;
+    fg-dim:         #a89984ff;
+    accent:         #d79921ff; /* Gruvbox yellow */
+    urgent:         #fb4934ff;
+
+    border-radius: 10px;
+    padding:       6;
+    margin:        0;
+}
+
+/* Window ---- */
+window {
+    transparency: "real";
+    background-color: rgba(29,32,33,0.92);
+    border: 2px;
+    border-color: @accent;
+    padding: 12;
+    width: 38%;
+    location: center;
+}
+
+/* Search bar ---- */
+inputbar {
+    background-color: rgba(40,40,40,0.95);
+    border-radius: 8px;
+    padding: 8;
+    spacing: 10;
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "Search…";
+}
+
+/* List ---- */
+listview {
+    background-color: transparent;
+    lines: 12;
+    columns: 1;
+    spacing: 6;
+}
+
+/* Items ---- */
+element {
+    background-color: transparent;
+    padding: 6 12;
+    text-color: @fg-dim;
+}
+
+element-icon {
+    size: 20;
+    margin: 0 10 0 0;
+}
+
+element-text {
+    highlight: bold;
+    text-color: @fg-dim;
+}
+
+/* Selected Item ---- */
+element selected {
+    background-color: @bg-selected;
+    text-color: @fg;
+}
+
+element selected element-text {
+    text-color: @fg;
+}
+
+element selected element-icon {
+    text-color: @fg;
+}

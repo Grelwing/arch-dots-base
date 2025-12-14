@@ -1,0 +1,61 @@
+/* wlogout - Gruvbox Dark (based on default) */
+
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+/* Dim, gruvbox-ish backdrop */
+window {
+	background-color: rgba(40, 40, 40, 0.92); /* #282828 */
+}
+
+/* Base button styling */
+button {
+	border-radius: 10px;
+	border-color: #504945;            /* gruvbox dark border */
+	text-decoration-color: #ebdbb2;   /* warm text color */
+	color: #ebdbb2;
+	background-color: #3c3836;        /* gruvbox dark bg */
+	border-style: solid;
+	border-width: 1px;
+
+	/* Keep icon behavior exactly like default */
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+/* Hover/focus state */
+button:focus,
+button:active,
+button:hover {
+	background-color: #504945;
+	outline-style: none;
+	border-color: #665c54;
+}
+
+/* Keep the icon mappings (do not touch these) */
+#lock {
+background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
