@@ -1,0 +1,4 @@
+gtk-engine-murrine
+rofi-wifi-menu-git
+sddm-sugar-dark
+wlogout

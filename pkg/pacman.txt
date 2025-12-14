@@ -1,0 +1,49 @@
+# --- bootstrap (required by install.sh itself) ---
+base-devel
+git
+rsync
+
+# --- compositor/session plumbing (assumes base Arch + Hyprland install) ---
+hyprland
+hypridle
+hyprlock
+hyprshot
+xdg-desktop-portal-hyprland
+xdg-utils
+
+# --- bar / launcher / logout ---
+waybar
+rofi
+wlogout
+ghostty
+
+# --- wallpaper ---
+swww
+
+# --- notifications + auth prompts ---
+dunst
+polkit-gnome
+
+# --- screenshot / selection / clipboard ---
+grim
+slurp
+wl-clipboard
+
+# --- file manager (explicitly referenced in hyprland.conf) ---
+thunar
+
+# --- audio control (Waybar on-click binding) ---
+pavucontrol
+
+# --- networking (rofi-wifi-menu uses nmcli) ---
+networkmanager
+
+# --- theming support (GTK + your themes/icons) ---
+gtk3
+gtk4
+gtk-engine-murrine
+gnome-themes-extra
+lxappearance
+
+# --- fonts (needed for Waybar icons / glyphs) ---
+otf-codenewroman-nerd
