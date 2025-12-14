@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BFILE="${1:-$HOME/.config/hypr/includes/binds.conf}"
+
+# helper: pretty-print modifiers
+pretty_mods() {
+  local s="$1"
+  s="${s//\$mainMod/Super}"
+  s="${s//SUPER/Super}"
+  s="${s//SHIFT/Shift}"
+  s="${s//CTRL/Ctrl}"
+  s="${s//ALT/Alt}"
+  # normalize separators/spaces
+  echo "$s" | sed -E 's/[[:space:]]+/,/g; s/,+/,/g; s/^,|,$//g; s/,/ + /g'
+}
+
+# helper: pretty-print keys
+pretty_key() {
+  local k="$1"
+  case "$k" in
+    return) echo "Enter" ;;
+    space|SPACE) echo "Space" ;;
+    Escape) echo "Esc" ;;
+    Tab) echo "Tab" ;;
+    left) echo "Left" ;;
+    right) echo "Right" ;;
+    up) echo "Up" ;;
+    down) echo "Down" ;;
+    mouse_down) echo "ScrollDown" ;;
+    mouse_up) echo "ScrollUp" ;;
+    *) echo "$k" ;;
+  esac
+}
+
+last_desc=""
+
+# Build lines like: "Open terminal = Super + Enter"
+# Then rofi select; selection copied to clipboard.
+out="$(
+  while IFS= read -r line; do
+    # capture description
+    if [[ "$line" =~ ^[[:space:]]*#@ ]]; then
+      last_desc="${line#\#@ }"
+      last_desc="${last_desc#\#@}"
+      last_desc="$(echo "$last_desc" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+      continue
+    fi
+
+    # match bind types we care about
+    if [[ "$line" =~ ^[[:space:]]*(bind|bindm|bindel|bindl)[[:space:]]*=[[:space:]]* ]]; then
+      # split on commas, keep first 3 fields: mods, key, dispatcher...
+      # Hypr format: bind = MODS, KEY, DISPATCHER, ARG...
+      rhs="${line#*=}"
+      rhs="$(echo "$rhs" | sed -E 's/^[[:space:]]+//')"
+      IFS=',' read -r mods key _rest <<< "$rhs"
+      mods="$(echo "$mods" | sed -E 's/[[:space:]]+$//')"
+      key="$(echo "$key" | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+
+      pmods="$(pretty_mods "$mods")"
+      pkey="$(pretty_key "$key")"
+
+      desc="${last_desc:-UNLABELED}"
+      printf '%s = %s%s\n' "$desc" "${pmods}${pmods:+ + }" "$pkey"
+
+      last_desc=""
+    fi
+  done < "$BFILE"
+)"
+
+choice="$(printf '%s\n' "$out" | rofi -dmenu -i -p "Keybinds")"
+[[ -n "${choice:-}" ]] && printf '%s' "$choice" | wl-copy
